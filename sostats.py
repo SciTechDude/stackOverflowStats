@@ -1,6 +1,6 @@
 import stackexchange
 import matplotlib.pyplot as plt
-import matplotlib.ticker as tkr
+from matplotlib.ticker import FuncFormatter
 import matplotlib.cm as cm
 import numpy as np
 import math
@@ -25,32 +25,32 @@ for  idx, tag in enumerate(so.tags()):
     tag_count.append(tag.count)
     
 #Choose some random colors
-colors=cm.rainbow(np.random.rand(tag_num))
+colors=cm.rainbow(np.random.rand(2 * tag_num))
 
 #Set bubble size
 bubble_size = [(float(i) / tag_count[0])*1000  for i in tag_count]
 
-#Convert tag to 1k notation
-#y_tick_values = [("{}k".format(v)) for v in tag_count]
-millnames = ['',' Thousand',' Million',' Billion',' Trillion']
-def millify(n):
-    n = float(n)
-    millidx = max(0,min(len(millnames)-1,
-                        int(math.floor(0 if n == 0 else math.log10(abs(n))/3))))
 
-    return '{:.0f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+def millions(x, pos):
+    'The two args are the value and tick position'
+    if len(str(x)) <=8 :
+        return '%1.1fK' % (x*1e-3)
+    
+    return '%1.1fM' % (x*1e-6)
 
-y_tick_values = [millify(v) for v in tag_count]
+formatter = FuncFormatter(millions)
 
 #create scatter plot
+
 fig, ax = plt.subplots()
-ax.scatter(tag_rank,tag_count,s=bubble_size,color=colors)
-#plt.scatter(tag_rank,tag_count,color=colors)
+ax.yaxis.set_major_formatter(formatter)
+ax.scatter(tag_rank,tag_count,s=bubble_size,marker='o', color=colors)
+#ax.scatter(tag_rank,tag_count,s=bubble_size,marker='o', c=bubble_size )
+#ax.scatter(tag_rank,tag_count,s=bubble_size, color=colors)
 
 #label each bubble
 for i in range(tag_num):
-    plt.annotate(tag_name[i],xy=(tag_rank[i], tag_count[i]))
-
+    plt.annotate(tag_name[i],xy=(tag_rank[i], tag_count[i]),xycoords=tag_name[i])
 
 
 #Label axis
@@ -60,12 +60,6 @@ plt.rcParams['ytick.major.pad'] = 8
 plt.xlabel('Tag Count')
 plt.ylabel(' Tag Rank')
 plt.title('Top Ten Tags By Counts',y=1.05)
-#plt.yticks(tag_count,y_tick_values)
-#plt.grid(True)
-#plt.margins(0.02) # Keeps data off plot edges
-#plt.setp(ax.get_yticklabels(), rotation=30, horizontalalignment='right')
-ax.get_yaxis().set_major_formatter(
-    tkr.FuncFormatter(lambda x, p: format(int(x), ',')))
 plt.show()
 
 #Look inside object
