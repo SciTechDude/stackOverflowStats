@@ -42,7 +42,8 @@ formatter = FuncFormatter(millions)
 
 #create scatter plot
 
-fig, ax = plt.subplots()
+#fig, ax = plt.subplots()
+ax = plt.gca()
 ax.yaxis.set_major_formatter(formatter)
 ax.scatter(tag_rank,tag_count,s=bubble_size,marker='o', color=colors)
 #ax.scatter(tag_rank,tag_count,s=bubble_size,marker='o', c=bubble_size )
@@ -50,7 +51,7 @@ ax.scatter(tag_rank,tag_count,s=bubble_size,marker='o', color=colors)
 
 #label each bubble
 for i in range(tag_num):
-    plt.annotate(tag_name[i],xy=(tag_rank[i], tag_count[i]),xycoords=tag_name[i])
+    plt.annotate(tag_name[i],xy=(tag_rank[i], tag_count[i]))
 
 
 #Label axis
@@ -61,6 +62,3 @@ plt.xlabel('Tag Count')
 plt.ylabel(' Tag Rank')
 plt.title('Top Ten Tags By Counts',y=1.05)
 plt.show()
-
-#Look inside object
-#dir(t)
