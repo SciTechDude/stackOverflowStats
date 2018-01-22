@@ -8,7 +8,7 @@ To copy the project to your folder simply use clone/download option at the top r
 
 ## Prerequisites
 
-Following libraries are needed as part of prereqs.
+Following libraries are needed as part of prerequisites.
 * [stackexchange](https://github.com/lucjon/Py-StackExchange)- To access stack overflow sites
 * [matplotlib](https://matplotlib.org/users/installing.html) -  For plotting / Graphical representation
 * [numpy](http://www.numpy.org/)  -  Needed for matplotlib as well as data-science tasks
@@ -19,7 +19,7 @@ Following libraries are needed as part of prereqs.
 
 ## Authors
 
-* **Anil Mandra** - *Initial work* - [PurpleBooth](https://github.com/SciTechDude)
+* **Anil Mandra** - *Initial work* - [SciTechDude](https://github.com/SciTechDude)
 
 ## License
 
