@@ -17,6 +17,10 @@ Following libraries are needed as part of prerequisites.
 * [seaborn](https://seaborn.pydata.org/)  -  For making graphs pretty
 
 
+## Notes
+To see detailed run through the script and project, checkout my blog @
+https://anilmandra.wordpress.com/2018/02/16/python-top-10-tags-by-question-count-on-stack-overflow-using-stack-exchange-api-for-python
+
 ## Authors
 
 * **Anil Mandra** - *Initial work* - [SciTechDude](https://github.com/SciTechDude)
